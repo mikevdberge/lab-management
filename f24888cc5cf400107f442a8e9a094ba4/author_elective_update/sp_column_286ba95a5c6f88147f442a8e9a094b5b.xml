@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column">
+    <sp_column action="DELETE">
+        <class_name/>
+        <order>1</order>
+        <size>6</size>
+        <size_lg/>
+        <size_sm/>
+        <size_xs/>
+        <sp_row display_value="1">a06ba95a5c6f88147f442a8e9a094b59</sp_row>
+        <sys_class_name>sp_column</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-16 18:13:42</sys_created_on>
+        <sys_id>286ba95a5c6f88147f442a8e9a094b5b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>1</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_update_name>sp_column_286ba95a5c6f88147f442a8e9a094b5b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-16 18:13:42</sys_updated_on>
+    </sp_column>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</application>
+        <file_path/>
+        <instance_id>1de0ef231b288810c23fed7b2f4bcb5d</instance_id>
+        <instance_name>ny-oct-667-002</instance_name>
+        <name>sp_column_286ba95a5c6f88147f442a8e9a094b5b</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column"><sp_column action="INSERT_OR_UPDATE"><class_name/><order>1</order><size>6</size><size_lg/><size_sm/><size_xs/><sp_row display_value="1">a06ba95a5c6f88147f442a8e9a094b59</sp_row><sys_class_name>sp_column</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-16 18:13:42</sys_created_on><sys_id>286ba95a5c6f88147f442a8e9a094b5b</sys_id><sys_mod_count>0</sys_mod_count><sys_name>1</sys_name><sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package><sys_policy/><sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope><sys_update_name>sp_column_286ba95a5c6f88147f442a8e9a094b5b</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-16 18:13:42</sys_updated_on></sp_column></record_update>]]></payload>
+        <payload_hash>1634744312</payload_hash>
+        <record_name>1</record_name>
+        <reverted_from/>
+        <source>f64888cc5cf400107f442a8e9a094ba6</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-16 18:13:42</sys_created_on>
+        <sys_id>e46ba95a5c6f88147f442a8e9a094b5d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>170e48d2cb00000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-16 18:13:42</sys_updated_on>
+        <type>Column</type>
+        <update_guid>206ba95a016f88140f9af5eeaeb3635d</update_guid>
+        <update_guid_history>206ba95a016f88140f9af5eeaeb3635d:1634744312</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">477b2d5a5c6f88147f442a8e9a094baa</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-16 18:14:09</sys_created_on>
+        <sys_db_object display_value="" name="sp_column">sp_column</sys_db_object>
+        <sys_id>4a13c3ac732b4a82a06aa19d6fe436c4</sys_id>
+        <sys_metadata>286ba95a5c6f88147f442a8e9a094b5b</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>1</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_scope_delete display_value="">0883ea1cf04d4920a8c962da30e69564</sys_scope_delete>
+        <sys_update_name>sp_column_286ba95a5c6f88147f442a8e9a094b5b</sys_update_name>
+        <sys_update_version display_value="sp_column_286ba95a5c6f88147f442a8e9a094b5b">e46ba95a5c6f88147f442a8e9a094b5d</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-16 18:14:09</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="DELETE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>sys_user</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Last Login</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+	var message = {"user": current.user_name,"last_login_time": current.last_login_time, "last_login_device": current.last_login_device};
+	message = JSON.stringify(message);
+	
+	var labman = new x_snc_lab_man.labManagement();
+	labman.logMessage(message, "CL-Login", labman.info);
+	gs.log("LOGIN DETECTED");
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-09-14 13:05:22</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>84e37df8f55b50107f44309ccfc5530a</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>Last Login</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_update_name>sys_script_84e37df8f55b50107f44309ccfc5530a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-09-14 14:19:26</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="DELETE" query="documentkey=84e37df8f55b50107f44309ccfc5530a"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</application>
+        <file_path/>
+        <instance_id>9c7ea77fdb4f50d0272e6ce2ca961959</instance_id>
+        <instance_name>orl-sep-977-002-instructor</instance_name>
+        <name>sys_script_84e37df8f55b50107f44309ccfc5530a</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script"&gt;&lt;sys_script action="INSERT_OR_UPDATE"&gt;&lt;abort_action&gt;false&lt;/abort_action&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;action_delete&gt;false&lt;/action_delete&gt;&lt;action_insert&gt;false&lt;/action_insert&gt;&lt;action_query&gt;false&lt;/action_query&gt;&lt;action_update&gt;true&lt;/action_update&gt;&lt;active&gt;true&lt;/active&gt;&lt;add_message&gt;false&lt;/add_message&gt;&lt;advanced&gt;true&lt;/advanced&gt;&lt;change_fields&gt;false&lt;/change_fields&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;collection&gt;sys_user&lt;/collection&gt;&lt;condition/&gt;&lt;description/&gt;&lt;execute_function&gt;false&lt;/execute_function&gt;&lt;filter_condition/&gt;&lt;is_rest&gt;false&lt;/is_rest&gt;&lt;message/&gt;&lt;name&gt;Last Login&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;priority&gt;100&lt;/priority&gt;&lt;rest_method/&gt;&lt;rest_method_text/&gt;&lt;rest_service/&gt;&lt;rest_service_text/&gt;&lt;rest_variables/&gt;&lt;role_conditions/&gt;&lt;script&gt;&lt;![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+	var message = {"user": current.user_name,"last_login_time": current.last_login_time, "last_login_device": current.last_login_device};
+	message = JSON.stringify(message);
+	
+	var labman = new x_snc_lab_man.labManagement();
+	labman.logMessage(message, "CL-Login", labman.info);
+	gs.log("LOGIN DETECTED");
+
+})(current, previous);]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-09-14 13:05:22&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;84e37df8f55b50107f44309ccfc5530a&lt;/sys_id&gt;&lt;sys_mod_count&gt;16&lt;/sys_mod_count&gt;&lt;sys_name&gt;Last Login&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Lab Management" source="x_snc_lab_man"&gt;f24888cc5cf400107f442a8e9a094ba4&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Lab Management"&gt;f24888cc5cf400107f442a8e9a094ba4&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_84e37df8f55b50107f44309ccfc5530a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-09-14 14:19:26&lt;/sys_updated_on&gt;&lt;template/&gt;&lt;when&gt;before&lt;/when&gt;&lt;/sys_script&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=84e37df8f55b50107f44309ccfc5530a"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1958358131</payload_hash>
+        <record_name>Last Login</record_name>
+        <reverted_from/>
+        <source>8265f3fbf50310107f44309ccfc55379</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-09-14 14:19:26</sys_created_on>
+        <sys_id>971702f8f59b50107f44309ccfc5532d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1748cfc1d8e0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-09-14 14:19:26</sys_updated_on>
+        <type>Business Rule</type>
+        <update_guid>5f1702f8669b5010c925824f108a882c</update_guid>
+        <update_guid_history>5f1702f8669b5010c925824f108a882c:-1958358131,506646b8d39b5010c6f2dbf10e613c3c:-490301607,b1e5ce78819b50100bd01169fa56c93f:1473807029,eda54e78049b5010e73ee00f4b386a5a:-948507034,8695ca78d19b50104ed24da8e8779c42:1440546068,8f740278f39b5010e672f9ef094018ac:1234757129,c7348e38709b50104ba4b008b808c923:809308304,eb244e38179b501001adc4a91cdd27a4:13107676,c96346386f9b5010da8f84a91c82f6c2:1440546068,a5134238309b501004520524fd1ef59b:-838378277,cb820ef4199b5010b7df5aa8c02771c5:-956496370,f3528af43f9b5010493aa5ea5389a35c:1749416629,7a0286f41c9b5010214b6a3758362384:-1153902553,fadd3d709f9b50104b6f79a3b999d451:-162198592,b12b39300d9b5010a2ffebbd9e4e5ff3:672011979,3f3675bc9c5b5010db910400f2aab607:-73423908,1e26fd7c3e5b5010158d6464a3934b32:180679724</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-09-14 14:57:05</sys_created_on>
+        <sys_db_object display_value="" name="sys_script">sys_script</sys_db_object>
+        <sys_id>3e8572319b854cd4bb098ef90c004b99</sys_id>
+        <sys_metadata>84e37df8f55b50107f44309ccfc5530a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Last Login</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_parent display_value="">4091ab12090100107f44312c0ad99cfa</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_scope_delete display_value="">0883ea1cf04d4920a8c962da30e69564</sys_scope_delete>
+        <sys_update_name>sys_script_84e37df8f55b50107f44309ccfc5530a</sys_update_name>
+        <sys_update_version display_value="sys_script_84e37df8f55b50107f44309ccfc5530a">971702f8f59b50107f44309ccfc5532d</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-09-14 14:57:05</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="DELETE">
+        <category>general</category>
+        <client_script><![CDATA[window.location = "/sp/?id=instance_reservation";]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_snc_lab_man_instance_reservation.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+</j:jelly>]]></html>
+        <name>instance_reservation</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-30 19:21:25</sys_created_on>
+        <sys_id>53f2120281d618107f447877e3db402c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>instance_reservation</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_update_name>sys_ui_page_53f2120281d618107f447877e3db402c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-30 19:21:25</sys_updated_on>
+    </sys_ui_page>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</application>
+        <file_path/>
+        <instance_id>752e73ba103110107f440c7703d59ce7</instance_id>
+        <instance_name>labinstance001</instance_name>
+        <name>sys_ui_page_53f2120281d618107f447877e3db402c</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_page"&gt;&lt;sys_ui_page action="INSERT_OR_UPDATE"&gt;&lt;category&gt;general&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[window.location = "/sp/?id=instance_reservation";]]&gt;&lt;/client_script&gt;&lt;description/&gt;&lt;direct&gt;false&lt;/direct&gt;&lt;endpoint&gt;x_snc_lab_man_instance_reservation.do&lt;/endpoint&gt;&lt;html&gt;&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null"&gt;
+
+&lt;/j:jelly&gt;]]&gt;&lt;/html&gt;&lt;name&gt;instance_reservation&lt;/name&gt;&lt;processing_script/&gt;&lt;sys_class_name&gt;sys_ui_page&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-07-30 19:21:25&lt;/sys_created_on&gt;&lt;sys_id&gt;53f2120281d618107f447877e3db402c&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;instance_reservation&lt;/sys_name&gt;&lt;sys_package display_value="Lab Management" source="x_snc_lab_man"&gt;f24888cc5cf400107f442a8e9a094ba4&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Lab Management"&gt;f24888cc5cf400107f442a8e9a094ba4&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_page_53f2120281d618107f447877e3db402c&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-07-30 19:21:25&lt;/sys_updated_on&gt;&lt;/sys_ui_page&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-481822026</payload_hash>
+        <record_name>instance_reservation</record_name>
+        <reverted_from/>
+        <source>50e77e438146d0107f447877e3db40f6</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-30 19:21:25</sys_created_on>
+        <sys_id>6213dece819618107f447877e3db40b7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>173a12c0dc20000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-30 19:21:25</sys_updated_on>
+        <type>UI Page</type>
+        <update_guid>aa13decedd961810e5005e84a72482b6</update_guid>
+        <update_guid_history>aa13decedd961810e5005e84a72482b6:-481822026</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-30 19:24:30</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_page">sys_ui_page</sys_db_object>
+        <sys_id>14fdc0d37b6b4a24b6e8696d4099e5e4</sys_id>
+        <sys_metadata>53f2120281d618107f447877e3db402c</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>instance_reservation</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_scope_delete display_value="">0883ea1cf04d4920a8c962da30e69564</sys_scope_delete>
+        <sys_update_name>sys_ui_page_53f2120281d618107f447877e3db402c</sys_update_name>
+        <sys_update_version display_value="sys_ui_page_53f2120281d618107f447877e3db402c">6213dece819618107f447877e3db40b7</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-30 19:24:30</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

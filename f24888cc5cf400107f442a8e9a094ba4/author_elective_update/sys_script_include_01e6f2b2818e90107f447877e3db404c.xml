@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_lab_man.cl_app_store_registration</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>cl_app_store_registration</name>
+        <script><![CDATA[var cl_app_store_registration = Class.create();
+cl_app_store_registration.prototype = {
+    initialize: function() {},
+    register: function(registrationTime) {
+        var lastRefresh = new GlideDateTime(gs.getProperty('cl.last_app_registration', '1970-01-01 00:00:00'));
+        var now = new GlideDateTime();
+        now.addSeconds(0 - registrationTime);
+        if (now.compareTo(lastRefresh) != -1) {
+            try {
+                var version = '';
+                try {
+                    var diag = new Diagnostics();
+                    diag.nextNode();
+                    var diagNode = diag.getNode();
+                    var instanceVersion = diagNode.stats["glide.build.name"];
+                    if (!gs.nil(instanceVersion))
+                        version = instanceVersion + '';
+                } catch (error) {
+                    gs.warn('Error getting instance build name ' + error, 'config_build_name');
+                    return;
+                }
+                var local_url = gs.getProperty('instance_name');
+                var local_id = gs.getProperty('instance_id');
+                var applications = [];
+                var expiration_date = new GlideDateTime();
+                expiration_date.addSeconds(registrationTime);
+                var content = {};
+                var request = new sn_ws.RESTMessageV2();
+                request.setEndpoint("https://appstoreprodworker.service-now.com/api/sn_appstore/cloudlabsappsregistration/register");
+                request.setBasicAuth(gs.getProperty('cl_app_store_user'), gs.getProperty('cl_app_store_pass'));
+                request.setHttpMethod("POST");
+                request.setRequestHeader("Accept", "application/json");
+                var requestBody = {};
+                requestBody.instances = [];
+                var inst = {};
+                inst.instance_name = local_url;
+                inst.instance_id = local_id;
+                inst.instance_type = "cloudlab";
+                inst.glide_build_name = version;
+                inst.expiration_date = expiration_date.getValue();
+                inst.applications = applications;
+                requestBody.instances.push(inst);
+                request.setRequestBody(new JSON().encode(requestBody));
+                var response = request.execute();
+                if (response.getStatusCode() == 200) {
+                    gs.setProperty('cl.app_store_registered', true);
+                    gs.setProperty('sn_appclient.app.install.offline', false);
+                    gs.setProperty('sn_appclient.upload_base_url', 'https://appstoreprodworker.service-now.com/');
+                    gs.log("Instance is Registered with the App Store");
+                    this.requestAppStoreRefresh();
+                    gs.setProperty('cl.last_app_registration', gs.nowDateTime());
+                }
+            } catch (error) {
+                gs.warn('Erroring during temp registration ' + error);
+            }
+        }
+    },
+    registerAppStore: function() {
+		var instanceURL = gs.getProperty('glide.servlet.uri');
+		if (instanceURL.indexOf('.lab.service-now.com') == -1) {
+			gs.print('App store registration is not required for this instance.');
+			return;
+		}
+        var registrationTime = 14400;
+        var lastRefresh = new GlideDateTime(gs.getProperty('cl.last_app_registration', '1970-01-01 00:00:00'));
+        var now = new GlideDateTime();
+        now.addSeconds(0 - registrationTime);
+        if (now.compareTo(lastRefresh) != -1) {
+            var triggerGR = new GlideRecord('sys_trigger');
+			triggerGR.initialize();
+			triggerGR.next_action = "1969-12-31 16:00:00";
+			triggerGR.name = "Register App Store";
+			triggerGR.trigger_type = 0; // Run Once
+			triggerGR.script = 'new cl_app_store_registration().register(' + registrationTime +')';
+			var triggerId = triggerGR.insert().sys_id+'';
+			while(triggerGR.get(triggerId)) {
+				gs.sleep(1000);
+			}
+			gs.print('App store registered until ' + gs.nowDateTime() + ' ' + gs.getSession().getTimeZoneName());
+        } else {
+            lastRefresh.addSeconds(registrationTime);
+            gs.print('Previous App Store registration too recent.  Registration will be available again at ' + lastRefresh + ' ' + gs.getSession().getTimeZoneName() + ".");
+        }
+    },
+    requestAppStoreRefresh: function() {
+        var local_url = gs.getProperty('instance_name');
+        // REFRESH PROVIDED BY APP STORE DEV
+        var ge = new GlideScopedEvaluator();
+        var si = new GlideRecord("sys_script_include");
+        si.get("825fd353d733210092610eca5e61039b");
+        si.setValue("script", 'gs.setProperty("sn_appclient.client_calls_allowed","true");new UpdateChecker().checkAvailableUpdates();gs.setProperty("sn_appclient.client_calls_allowed","false");');
+        ge.evaluateScript(si, "script", {});
+        //END REFRESH
+        // EW@SNC - adding final cache flush . . . just in case!
+        gs.cacheFlush();
+    },
+    type: 'cl_app_store_registration'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-20 19:37:55</sys_created_on>
+        <sys_id>01e6f2b2818e90107f447877e3db404c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cl_app_store_registration</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_update_name>sys_script_include_01e6f2b2818e90107f447877e3db404c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-20 19:37:55</sys_updated_on>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</application>
+        <file_path/>
+        <instance_id>752e73ba103110107f440c7703d59ce7</instance_id>
+        <instance_name>labinstance001</instance_name>
+        <name>sys_script_include_01e6f2b2818e90107f447877e3db404c</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_snc_lab_man.cl_app_store_registration&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description/&gt;&lt;name&gt;cl_app_store_registration&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var cl_app_store_registration = Class.create();
+cl_app_store_registration.prototype = {
+    initialize: function() {},
+    register: function(registrationTime) {
+        var lastRefresh = new GlideDateTime(gs.getProperty('cl.last_app_registration', '1970-01-01 00:00:00'));
+        var now = new GlideDateTime();
+        now.addSeconds(0 - registrationTime);
+        if (now.compareTo(lastRefresh) != -1) {
+            try {
+                var version = '';
+                try {
+                    var diag = new Diagnostics();
+                    diag.nextNode();
+                    var diagNode = diag.getNode();
+                    var instanceVersion = diagNode.stats["glide.build.name"];
+                    if (!gs.nil(instanceVersion))
+                        version = instanceVersion + '';
+                } catch (error) {
+                    gs.warn('Error getting instance build name ' + error, 'config_build_name');
+                    return;
+                }
+                var local_url = gs.getProperty('instance_name');
+                var local_id = gs.getProperty('instance_id');
+                var applications = [];
+                var expiration_date = new GlideDateTime();
+                expiration_date.addSeconds(registrationTime);
+                var content = {};
+                var request = new sn_ws.RESTMessageV2();
+                request.setEndpoint("https://appstoreprodworker.service-now.com/api/sn_appstore/cloudlabsappsregistration/register");
+                request.setBasicAuth(gs.getProperty('cl_app_store_user'), gs.getProperty('cl_app_store_pass'));
+                request.setHttpMethod("POST");
+                request.setRequestHeader("Accept", "application/json");
+                var requestBody = {};
+                requestBody.instances = [];
+                var inst = {};
+                inst.instance_name = local_url;
+                inst.instance_id = local_id;
+                inst.instance_type = "cloudlab";
+                inst.glide_build_name = version;
+                inst.expiration_date = expiration_date.getValue();
+                inst.applications = applications;
+                requestBody.instances.push(inst);
+                request.setRequestBody(new JSON().encode(requestBody));
+                var response = request.execute();
+                if (response.getStatusCode() == 200) {
+                    gs.setProperty('cl.app_store_registered', true);
+                    gs.setProperty('sn_appclient.app.install.offline', false);
+                    gs.setProperty('sn_appclient.upload_base_url', 'https://appstoreprodworker.service-now.com/');
+                    gs.log("Instance is Registered with the App Store");
+                    this.requestAppStoreRefresh();
+                    gs.setProperty('cl.last_app_registration', gs.nowDateTime());
+                }
+            } catch (error) {
+                gs.warn('Erroring during temp registration ' + error);
+            }
+        }
+    },
+    registerAppStore: function() {
+		var instanceURL = gs.getProperty('glide.servlet.uri');
+		if (instanceURL.indexOf('.lab.service-now.com') == -1) {
+			gs.print('App store registration is not required for this instance.');
+			return;
+		}
+        var registrationTime = 14400;
+        var lastRefresh = new GlideDateTime(gs.getProperty('cl.last_app_registration', '1970-01-01 00:00:00'));
+        var now = new GlideDateTime();
+        now.addSeconds(0 - registrationTime);
+        if (now.compareTo(lastRefresh) != -1) {
+            var triggerGR = new GlideRecord('sys_trigger');
+			triggerGR.initialize();
+			triggerGR.next_action = "1969-12-31 16:00:00";
+			triggerGR.name = "Register App Store";
+			triggerGR.trigger_type = 0; // Run Once
+			triggerGR.script = 'new cl_app_store_registration().register(' + registrationTime +')';
+			var triggerId = triggerGR.insert().sys_id+'';
+			while(triggerGR.get(triggerId)) {
+				gs.sleep(1000);
+			}
+			gs.print('App store registered until ' + gs.nowDateTime() + ' ' + gs.getSession().getTimeZoneName());
+        } else {
+            lastRefresh.addSeconds(registrationTime);
+            gs.print('Previous App Store registration too recent.  Registration will be available again at ' + lastRefresh + ' ' + gs.getSession().getTimeZoneName() + ".");
+        }
+    },
+    requestAppStoreRefresh: function() {
+        var local_url = gs.getProperty('instance_name');
+        // REFRESH PROVIDED BY APP STORE DEV
+        var ge = new GlideScopedEvaluator();
+        var si = new GlideRecord("sys_script_include");
+        si.get("825fd353d733210092610eca5e61039b");
+        si.setValue("script", 'gs.setProperty("sn_appclient.client_calls_allowed","true");new UpdateChecker().checkAvailableUpdates();gs.setProperty("sn_appclient.client_calls_allowed","false");');
+        ge.evaluateScript(si, "script", {});
+        //END REFRESH
+        // EW@SNC - adding final cache flush . . . just in case!
+        gs.cacheFlush();
+    },
+    type: 'cl_app_store_registration'
+};]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-07-20 19:37:55&lt;/sys_created_on&gt;&lt;sys_id&gt;01e6f2b2818e90107f447877e3db404c&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;cl_app_store_registration&lt;/sys_name&gt;&lt;sys_package display_value="Lab Management" source="x_snc_lab_man"&gt;f24888cc5cf400107f442a8e9a094ba4&lt;/sys_package&gt;&lt;sys_policy&gt;read&lt;/sys_policy&gt;&lt;sys_scope display_value="Lab Management"&gt;f24888cc5cf400107f442a8e9a094ba4&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_01e6f2b2818e90107f447877e3db404c&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-07-20 19:37:55&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1382627823</payload_hash>
+        <record_name>cl_app_store_registration</record_name>
+        <reverted_from/>
+        <source>433d6415810210107f447877e3db402a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-20 19:37:55</sys_created_on>
+        <sys_id>aef6f2b2818e90107f447877e3db4055</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1736dbb8f5f0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-20 19:37:55</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>e6f6f2b29c8e9010c7a8f3b99ff69a55</update_guid>
+        <update_guid_history>e6f6f2b29c8e9010c7a8f3b99ff69a55:1382627823</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-20 19:49:31</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>14e432a420814d1dbdc2648147697f81</sys_id>
+        <sys_metadata>01e6f2b2818e90107f447877e3db404c</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cl_app_store_registration</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_parent/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_scope_delete display_value="">0883ea1cf04d4920a8c962da30e69564</sys_scope_delete>
+        <sys_update_name>sys_script_include_01e6f2b2818e90107f447877e3db404c</sys_update_name>
+        <sys_update_version display_value="sys_script_include_01e6f2b2818e90107f447877e3db404c">aef6f2b2818e90107f447877e3db4055</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-20 19:49:31</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column">
+    <sp_column action="DELETE">
+        <class_name/>
+        <order>1</order>
+        <size>6</size>
+        <size_lg/>
+        <size_sm/>
+        <size_xs/>
+        <sp_row display_value="1">3665dda6810690107f447877e3db401f</sp_row>
+        <sys_class_name>sp_column</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-19 17:53:11</sys_created_on>
+        <sys_id>fe65dda6810690107f447877e3db4023</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>1</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_update_name>sp_column_fe65dda6810690107f447877e3db4023</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-19 17:53:37</sys_updated_on>
+    </sp_column>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</application>
+        <file_path/>
+        <instance_id>752e73ba103110107f440c7703d59ce7</instance_id>
+        <instance_name>labinstance001</instance_name>
+        <name>sp_column_fe65dda6810690107f447877e3db4023</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column"><sp_column action="INSERT_OR_UPDATE"><class_name/><order>1</order><size>6</size><size_lg/><size_sm/><size_xs/><sp_row display_value="1">3665dda6810690107f447877e3db401f</sp_row><sys_class_name>sp_column</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-07-19 17:53:11</sys_created_on><sys_id>fe65dda6810690107f447877e3db4023</sys_id><sys_mod_count>1</sys_mod_count><sys_name>1</sys_name><sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package><sys_policy/><sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope><sys_update_name>sp_column_fe65dda6810690107f447877e3db4023</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-07-19 17:53:37</sys_updated_on></sp_column></record_update>]]></payload>
+        <payload_hash>1550366723</payload_hash>
+        <record_name>1</record_name>
+        <reverted_from/>
+        <source>433d6415810210107f447877e3db402a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-19 17:53:37</sys_created_on>
+        <sys_id>8985dda6810690107f447877e3db40d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1736835b7640000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-19 17:53:37</sys_updated_on>
+        <type>Column</type>
+        <update_guid>c185dda69106901046457af4c444a7d2</update_guid>
+        <update_guid_history>c185dda69106901046457af4c444a7d2:1550366723,7e65dda60e069010a2013d7a7010fd24:-1547005947</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">a28511e6810690107f447877e3db4037</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-19 17:53:44</sys_created_on>
+        <sys_db_object display_value="" name="sp_column">sp_column</sys_db_object>
+        <sys_id>0a7c8b5638624a86841931c2ce735fb1</sys_id>
+        <sys_metadata>fe65dda6810690107f447877e3db4023</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>1</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_scope_delete display_value="">0883ea1cf04d4920a8c962da30e69564</sys_scope_delete>
+        <sys_update_name>sp_column_fe65dda6810690107f447877e3db4023</sys_update_name>
+        <sys_update_version display_value="sp_column_fe65dda6810690107f447877e3db4023">8985dda6810690107f447877e3db40d2</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-19 17:53:44</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

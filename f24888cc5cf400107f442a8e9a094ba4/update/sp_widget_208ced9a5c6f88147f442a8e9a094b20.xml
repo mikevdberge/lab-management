@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function ($uibModal,$scope) {
+	/* widget controller */
+	var c = this;
+
+	$scope.reserveInstance = function () {
+		c.server.update();
+	}
+
+	c.openModal = function() {
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'modalTemplate',
+			scope: $scope
+		});
+	}
+
+	c.closeModal = function() {
+		c.modalInstance.close();
+	}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.center {
+  text-align: center;
+}
+  </css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>get_your_instance</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Get your Instance</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function () {
+
+	data.labTitle = gs.getProperty('x_snc_lab_man.lab_name');
+	var debug = false;
+	
+	if (input) {
+		//gs.addInfoMessage(checkAlreadyRegistered(input.emailAddress));
+		if (input.emailAddress != "" && input.emailAddress != null){
+			if(!checkAlreadyRegistered(input.emailAddress)){
+				registerUser(input.emailAddress.toLowerCase());
+			}
+			getUsersInstances(input.emailAddress.toLowerCase());
+		}
+	}
+
+	function checkAlreadyRegistered(emailAddress){
+		var labRecord = new GlideRecord('x_snc_lab_man_student_instances');
+		labRecord.addQuery('reserved', true);
+		labRecord.addQuery('email_address', emailAddress);
+		labRecord.setLimit(1);
+		labRecord.query();
+		if (labRecord.getRowCount() >= 1) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	function registerUser(emailAddress){
+		var labRecord = new GlideRecord('x_snc_lab_man_student_instances');
+		labRecord.addQuery('reserved', false);
+		labRecord.addQuery('state', 'Configured');
+		labRecord.orderBy('instance_name');
+		labRecord.setLimit(1);
+		labRecord.query();
+		if (labRecord.next()) {
+			labRecord.first_name = input.firstName;
+			labRecord.last_name = input.lastName;
+			labRecord.email_address = emailAddress;
+			labRecord.reserved = true;
+			labRecord.update();
+		}else{
+			data.errorMessage = "There are no more instances available";
+			gs.addErrorMessage("There are no more instances available");
+		}
+	}
+	
+	function getUsersInstances(emailAddress){
+		data.parentInstance = {};
+		data.childInstances = [];
+		var primaryInstance = '';
+		
+		// Get Primary Instance
+		var parentRecord = new GlideRecord('x_snc_lab_man_student_instances');
+		parentRecord.addQuery('reserved', true);
+		parentRecord.addQuery('email_address', emailAddress);
+		parentRecord.query();
+		if (parentRecord.next()){
+			data.parentInstance.instanceName = "Primary ServiceNow Instance";
+			//data.parentInstance.instanceName = parentRecord.instance_name.toString();
+			data.parentInstance.user_name = parentRecord.user_name.toString();
+			data.parentInstance.password = parentRecord.password.toString();
+			data.parentInstance.url = parentRecord.url.toString();
+			primaryInstance = parentRecord.sys_id.toString();
+		}
+		
+		var childRecord = new GlideRecord('x_snc_lab_man_paired_instances');
+		childRecord.addEncodedQuery('active=true^paired_instance=' + primaryInstance + '^ORpaired_instanceISEMPTY');
+		childRecord.query();
+		while(childRecord.next()){
+			var nourl = 'true';
+			var childInstance = {};
+			childInstance.instanceName = childRecord.instance_name.toString();
+			childInstance.user_name = childRecord.user_name.toString();
+			childInstance.password = childRecord.password.toString();
+			childInstance.url = childRecord.url.toString();
+			childInstance.instance_type = childRecord.instance_type.toString();
+			if (childRecord.instance_type == "windows_instance" || childRecord.instance_type == "linux_instance"){
+				childRecord.url = childRecord.url.replace("https://", "");
+				var addr = childRecord.url.split(" | ");
+				childInstance.url = addr[1] + " [" + addr[0] + "]";
+				childInstance.instanceName = childRecord.instance_type.getDisplayValue();
+				nourl = 'false';
+			}
+			childInstance.nourl = nourl;
+			
+			data.childInstances.push(childInstance);
+		}
+	}
+	
+	data.emailAddress = "";
+	data.firstName = "";
+	data.lastName = "";
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-16 18:18:37</sys_created_on>
+        <sys_id>208ced9a5c6f88147f442a8e9a094b20</sys_id>
+        <sys_mod_count>252</sys_mod_count>
+        <sys_name>Get your Instance</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_update_name>sp_widget_208ced9a5c6f88147f442a8e9a094b20</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-09-03 21:01:03</sys_updated_on>
+        <template><![CDATA[<div class="center">
+  <img src="servicenow_transparent_logo.png" width="424px">
+  <h2>
+    Welcome to<br>
+    {{data.labTitle}}
+  </h2>
+  <!-- your widget template -->
+  <form ng-if="!data.parentInstance">
+    <div class="form-group container">
+      <div class="row">
+        <div class="col-sm">
+          <input name="firstName" class="form-control" id="firstName" ng-model="c.data.firstName"
+                 type="text" placeholder="First Name"> &nbsp;
+          <input name="lastName" class="form-control" id="lastName" ng-model="c.data.lastName"
+                 type="text" placeholder="Last Name">
+          <br><br>
+          <input name="emailAddress" class="form-control" id="emailAddress"
+                 ng-model="c.data.emailAddress" type="text" size="60"
+                 placeholder="Enter your email address to reserve your instances"><br>
+          <br>
+          <div>
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-info-circle-fill text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+</svg>&nbsp;&nbsp;Email addresses are used instance reservation purposes only.<br>If you need your credentials again, return to this page and enter the same email address
+          </div>
+          <br>
+          <button ng-click="reserveInstance();" class="btn btn-primary">
+            Register for Lab
+          </button>
+        </div>
+      </div>
+    </div>
+    </div>
+  </form>
+<div ng-if="data.parentInstance">
+  <table class='table table-hover'>
+    <thead><tr>
+      <th>Resource</th>
+      <th>Address</th>
+      <th>Username</th>
+      <th>Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{::data.parentInstance.instanceName}}</td>
+        <td><a href="{{::data.parentInstance.url}}" target="_blank">{{::data.parentInstance.url}}</a></td>
+        <td>{{::data.parentInstance.user_name}}</td>
+        <td>{{::data.parentInstance.password}}</td>
+      </tr>
+      <tr ng-repeat="child in data.childInstances">
+        <td>{{::child.instanceName}} <a ng-if="child.instance_type == 'windows_instance' || child.instance_type == 'linux_instance'" ng-click="c.openModal()"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-question-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.57 6.033H5.25C5.22 4.147 6.68 3.5 8.006 3.5c1.397 0 2.673.73 2.673 2.24 0 1.08-.635 1.594-1.244 2.057-.737.559-1.01.768-1.01 1.486v.355H7.117l-.007-.463c-.038-.927.495-1.498 1.168-1.987.59-.444.965-.736.965-1.371 0-.825-.628-1.168-1.314-1.168-.901 0-1.358.603-1.358 1.384zm1.251 6.443c-.584 0-1.009-.394-1.009-.927 0-.552.425-.94 1.01-.94.609 0 1.028.388 1.028.94 0 .533-.42.927-1.029.927z"/>
+          </svg></a></td>
+        <td ng-if="child.nourl == 'true'"> <a href="{{::child.url}}" target="_blank">{{::child.url}}</a></td>
+        <td ng-if="child.nourl == 'false'">{{::child.url}}</td>
+        <td>{{::child.user_name}}</td>
+        <td>{{::child.password}}</td>
+      </tr>
+    </tbody>
+  </table><br><br>
+  <button onClick="window.location.reload();" class="btn btn-primary">Back</button>
+</div>
+<!--<div>
+<button class="btn btn-primary" ng-click="c.openModal()">${Open Modal}</button>
+</div> -->
+
+<script type="text/ng-template" id="modalTemplate">
+    <div class="panel panel-default">
+ <div class="panel-heading">
+ <h4 class="panel-title">Remote Connection</h4>
+  </div>
+ <div class="panel-body wrapper-xl">
+ <b>Windows Server:</b> This server will require you to use a <b>Remote Desktop Client</b> to connect and access the desktop. On a Mac you can install Microsoft's RDP client. Windows has the RDP client preinstalled.<br><br>
+ <b>Linux Server:</b> To access this machine you will need to connect via SSH. You will need to use a terminal on Mac with access to ssh or if you are on a Windows computer you can use the <b>Windows Terminal</b> or <b>Putty</b> to connect
+  </div>
+ <div class="panel-footer text-right">
+ <button class="btn btn-primary" ng-click="c.closeModal()">${Close}</button>
+  </div>
+  </div>
+</script>]]></template>
+    </sp_widget>
+</record_update>

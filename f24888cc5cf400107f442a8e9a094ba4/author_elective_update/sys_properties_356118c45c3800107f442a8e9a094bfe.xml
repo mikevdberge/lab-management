@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="DELETE">
+        <choices/>
+        <description>Check this box to keep the name you choose below. Otherwise it will be refreshed from Cloud Labs.</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_snc_lab_man.Custom Lab Name</name>
+        <read_roles/>
+        <suffix>Custom Lab Name</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-10-24 19:02:32</sys_created_on>
+        <sys_id>356118c45c3800107f442a8e9a094bfe</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_lab_man.Custom Lab Name</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_update_name>sys_properties_356118c45c3800107f442a8e9a094bfe</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-10-24 19:02:32</sys_updated_on>
+        <type>boolean</type>
+        <value/>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="DELETE" query="documentkey=356118c45c3800107f442a8e9a094bfe"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</application>
+        <file_path/>
+        <instance_id>1de0ef231b288810c23fed7b2f4bcb5d</instance_id>
+        <instance_name>ny-oct-667-002</instance_name>
+        <name>sys_properties_356118c45c3800107f442a8e9a094bfe</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties"><sys_properties action="INSERT_OR_UPDATE"><choices/><description>Check this box to keep the name you choose below. Otherwise it will be refreshed from Cloud Labs.</description><ignore_cache>false</ignore_cache><is_private>false</is_private><name>x_snc_lab_man.Custom Lab Name</name><read_roles/><suffix>Custom Lab Name</suffix><sys_class_name>sys_properties</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2019-10-24 19:02:32</sys_created_on><sys_id>356118c45c3800107f442a8e9a094bfe</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_snc_lab_man.Custom Lab Name</sys_name><sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package><sys_policy/><sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope><sys_update_name>sys_properties_356118c45c3800107f442a8e9a094bfe</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2019-10-24 19:02:32</sys_updated_on><type>boolean</type><value/><write_roles/></sys_properties><sys_translated_text action="delete_multiple" query="documentkey=356118c45c3800107f442a8e9a094bfe"/></record_update>]]></payload>
+        <payload_hash>554636369</payload_hash>
+        <record_name>x_snc_lab_man.Custom Lab Name</record_name>
+        <reverted_from/>
+        <source>f64888cc5cf400107f442a8e9a094ba6</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-10-24 19:02:33</sys_created_on>
+        <sys_id>18a158c45c3800107f442a8e9a094b73</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>16dff2628c80000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-10-24 19:02:33</sys_updated_on>
+        <type>System Property</type>
+        <update_guid>18a158c473380010a9d4c0cf90fe8972</update_guid>
+        <update_guid_history>18a158c473380010a9d4c0cf90fe8972:554636369</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-10-24 19:02:45</sys_created_on>
+        <sys_db_object display_value="" name="sys_properties">sys_properties</sys_db_object>
+        <sys_id>09a8ee7151ea42d8bac6ab301fadf0e9</sys_id>
+        <sys_metadata>356118c45c3800107f442a8e9a094bfe</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_lab_man.Custom Lab Name</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_scope_delete display_value="">0883ea1cf04d4920a8c962da30e69564</sys_scope_delete>
+        <sys_update_name>sys_properties_356118c45c3800107f442a8e9a094bfe</sys_update_name>
+        <sys_update_version display_value="sys_properties_356118c45c3800107f442a8e9a094bfe">18a158c45c3800107f442a8e9a094b73</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-10-24 19:02:45</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

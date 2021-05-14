@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_header_footer">
+    <sp_header_footer action="DELETE">
+        <category>standard</category>
+        <client_script><![CDATA[function ($rootScope, $scope, snRecordWatcher, spUtil, $location, $uibModal, cabrillo, $timeout, $window) {
+
+	$scope.collapse = function() {
+		$rootScope.$emit('sp-navbar-collapse');
+	}
+
+	$scope.avatarProfile = {
+		userID: $scope.user.sys_id,
+		name: $scope.user.name,
+		initials: $window.NOW.user_initials
+	};
+
+	if ($window.NOW.user_avatar) {
+		$scope.avatarProfile.userImage = $window.NOW.user_avatar;
+	}
+
+	if (cabrillo.isNative()) {
+		if ($window.innerWidth < 767) {
+			$scope.isViewNative = true;
+		} else {
+			$scope.isViewNativeTablet = true;
+		}
+	}
+
+
+	$scope.openPopUp = function() {
+		var url = "$chat_support.do?queueID=" + $scope.data.connect_support_queue_id;
+		var popup = window.open (url, "popup", "width=900, height=600");
+	};
+
+	$scope.openLogin = function () {
+		$scope.modalInstance = $uibModal.open({
+			templateUrl: 'modalLogin',
+			scope: $scope
+		});
+	};
+
+	var xsScreenSize = isXSScreenSize();
+	$scope.showXSAvatar = isXSScreenSize();
+	$scope.showAvatar = !isXSScreenSize();
+
+	$scope.isAgentChatConfigured = g_has_agent_chat_config;
+
+	angular.element($window).on('resize', function () {
+		if(xsScreenSize !== isXSScreenSize() && (!$scope.showXSAvatar || !$scope.showAvatar)){
+			$scope.showXSAvatar = true;
+			$scope.showAvatar = true;
+		}
+	});
+
+
+	function isXSScreenSize() {
+		return $window.matchMedia('(max-width: 767px)').matches;
+	}
+
+	$rootScope.$on('sp.avatar_changed', function(evt, obj) {
+		$scope.userID = "";
+		$scope.newAvatarId = obj.newAvatarId;
+		$timeout(function(){
+			$scope.userID = $scope.user.sys_id;
+			$("#profile-dropdown .sub-avatar").css("background-image", 'url("' + $scope.newAvatarId + '.iix?t=small")');
+		});
+	});
+
+	$scope.isHomepage = function() {
+		if (!$scope.page.id)
+			return true;
+
+		if ($scope.page.id == $scope.portal.homepage_dv)
+			return true;
+
+		return false;
+	};
+}
+		]]></client_script>
+        <controller_as>c</controller_as>
+        <css>header{&#13;
+  display: none;&#13;
+}&#13;
+.navbar {&#13;
+  transition: 250ms opacity ease-in-out;&#13;
+  -webkit-transition: 250ms opacity ease-in-out;&#13;
+  border: 0;&#13;
+  border-bottom: 4px solid $sp-navbar-divider-color;&#13;
+}&#13;
+&#13;
+.navbar-fade {&#13;
+  opacity: 0.4;&#13;
+}&#13;
+&#13;
+.navbar-inverse .navbar-toggle {&#13;
+  border-color: rgba(255, 255, 255, 0.25);&#13;
+}&#13;
+&#13;
+header[role="banner"],&#13;
+.nav &gt; li &gt; a {&#13;
+  max-height: 60px;&#13;
+}&#13;
+&#13;
+@media screen and (max-width: 768px){&#13;
+  .nav &gt; li &gt; a {&#13;
+    padding-right: 0.5rem;&#13;
+    padding-left: 0.5rem;&#13;
+  }&#13;
+}&#13;
+&#13;
+.navbar-brand {&#13;
+  max-height: 60px;&#13;
+  padding: 0;&#13;
+  padding-bottom: 0.5rem;&#13;
+}&#13;
+&#13;
+.navbar-brand img, .navbar-brand span {&#13;
+  margin-left: $sp-logo-margin-x;&#13;
+  margin-right: $sp-logo-margin-x;&#13;
+  margin-top: $sp-logo-margin-y;&#13;
+  margin-bottom: $sp-logo-margin-y;&#13;
+  display: block;&#13;
+  max-height: $sp-logo-max-height;&#13;
+  max-width: $sp-logo-max-width;&#13;
+  position: relative;&#13;
+  top: 50%;&#13;
+  -webkit-transform: translateY(-50%);&#13;
+  -ms-transform: translateY(-50%);&#13;
+  transform: translateY(-50%);&#13;
+}&#13;
+.breadcrumb-container {&#13;
+  background-color: $panel-bg;&#13;
+}&#13;
+&#13;
+/* for mobile app */&#13;
+.navbar-inverse.is-native {&#13;
+  background-color: #405060;&#13;
+}&#13;
+&#13;
+nav {&#13;
+  margin-bottom: 0px;&#13;
+  border-radius: 0px;&#13;
+&#13;
+ .toggle-dropdown {&#13;
+    height: 60px;&#13;
+  }&#13;
+&#13;
+}&#13;
+&#13;
+.navbar-right {&#13;
+  padding-right: 0px;&#13;
+  padding-left: 7px;&#13;
+}&#13;
+&#13;
+.navbar-nav {&#13;
+margin: 0px;&#13;
+}&#13;
+&#13;
+// PRB711244: Dropdown menu is scrollable when too many items&#13;
+.scrollable-dropdown {&#13;
+  max-height: 80vh;&#13;
+  overflow: auto;&#13;
+  height: auto;&#13;
+}&#13;
+&#13;
+.is-native {&#13;
+ .scrollable-dropdown {&#13;
+  max-height: 100vh;&#13;
+  overflow: scroll;&#13;
+  height: auto;&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+/* PRB923910: Fix for Service Portal - Header Poorly Aligned in Safari */&#13;
+@media screen and (min-width: 768px) {&#13;
+  .navbar-right {&#13;
+    display: flex !important;&#13;
+  }&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function(scope, element) {
+	$(document).keyup(function(event) {
+		if (event.which == 9 || event.which == 37 || event.which == 39) { //tab key handler + arrow keys
+			if ($(event.target).parents(".dropdown-menu").length == 0) { //if we are NOT inside a dropdown...
+				//close the dropdowns
+				$(".dropdown").removeClass("open");
+				$("[data-toggle='dropdown']").attr("aria-expanded", "false");
+			}
+		}
+	});
+
+	$(element).on('click.nav','.navbar-collapse.in',function(e) {
+		var target = $(e.target);
+		if (target.is('a')) {
+			if (target.hasClass('sp-menu-has-items'))
+				return; // menu item has a submenu, so just toggle it
+
+			// collapse mobile nav if clicked an anchor
+			$(this).removeClass('in').addClass('collapse');
+			return;
+		}
+
+		if (target.parent().hasClass("toggle-dropdown")) {
+			// collapse mobile nav if parent has toggle-dropdown class
+			$(this).removeClass('in').addClass('collapse');
+			return;
+		}
+
+		// if neither target nor parent is an anchor, do nothing
+		if (!target.parent().is('a'))
+			return;
+
+		// collapse mobile nav if target is part of a submenu
+		if (target.parents("ul.dropdown-menu").length > 0)
+			$(this).removeClass('in').addClass('collapse');
+	});
+}]]></link>
+        <name>Lab Management Header</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[// Defines the support queue ID that will be linked to by the Live Chat link in header
+data.connect_support_queue_id = $sp.getValue('sp_chat_queue');
+data.login_page = $sp.getValue('login_page');
+data.profileBtnMsg = gs.getMessage("User options");
+var menu = $sp.getValue("sp_rectangle_menu");
+data.menu = $sp.getWidgetFromInstance(menu);
+if (data.menu && data.menu.data) {
+	data.menu.data.replace = true;
+	// Hide login if menu already has link to login
+	data.hasLogin = false;
+	if (data.menu.data.menu.items) {
+		for(var i in data.menu.data.menu.items) {
+			var item = data.menu.data.menu.items[i];
+			if (item.type == 'page' && item.sp_page == data.login_page)
+				data.hasLogin = true;
+		}
+	}
+}
+
+data.loginWidget = $sp.getWidgetFromInstance('login-modal');]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_header_footer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-20 17:31:21</sys_created_on>
+        <sys_id>280a5636814e90107f447877e3db40eb</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>Lab Management Header</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_update_name>sp_header_footer_280a5636814e90107f447877e3db40eb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-20 17:39:39</sys_updated_on>
+        <template><![CDATA[<div>
+  <nav class="navbar-inverse" ng-class="::{'navbar':!isViewNative, 'is-native': isViewNative}"
+       role="navigation">
+    <div ng-show="::!isViewNative" class="navbar-header">
+<a class="navbar-brand" ng-if="::!portal.logo" href="?id={{::portal.homepage_dv}}"><span ng-bind="portal.title"></span></a>
+      <a class="navbar-brand navbar-brand-logo" ng-if="::portal.logo" ng-href="?id={{::portal.homepage_dv}}" ng-click="collapse()" aria-label="${Go to homepage}">
+        <img ng-src="{{::portal.logo}}" title="ServiceNow" role="presentation" alt="${Portal Logo}" />
+      </a>
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sp-nav-bar">
+        <span class="sr-only">${Toggle navigation}</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div sp-navbar-toggle="" class="collapse navbar-right" id="sp-nav-bar">
+      <!-- Include The Menu -->
+      <sp-widget widget="::data.menu"></sp-widget>
+      <ul ng-if="(!user.logged_in && page.id != portal.login_page_dv && !data.hasLogin)" class="nav navbar-nav" role="presentation">
+        <li role="presentation"><a href ng-click="::openLogin()">${Login}</a></li>
+      </ul>
+      <ul ng-if="user.logged_in" class="nav navbar-nav" role="menubar">
+        <!-- chat, avatar, and logout -->
+        <li ng-if="::(data.connect_support_queue_id && !isAgentChatConfigured)" role="presentation"><a href ng-click="openPopUp()" role="menuitem">${Live Chat}</a></li>
+        <li ng-if="showAvatar" class="hidden-xs dropdown" role="presentation">
+          <a href class="toggle-dropdown" data-toggle="dropdown" aria-expanded="false" title="{{::data.profileBtnMsg}}" aria-label="{{::data.profileBtnMsg}}: {{::user.name}}" id="profile-dropdown"  role="menuitem" aria-haspopup="true">
+            <span class="navbar-avatar" aria-hidden="true"><sn-avatar class="avatar-small-medium" primary="avatarProfile" /></span>
+            <span class="visible-lg-inline">{{::user.name}}</span>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-label="{{::data.profileBtnMsg}}">
+            <li role="presentation"><a tabindex="-1" ng-href="?id=user_profile&sys_id={{::user.sys_id}}" role="menuitem">${Profile}</a></li>
+            <li ng-if="::!(isViewNative || isViewNativeTablet)" role="presentation"><a tabindex="-1" href="{{::portal.logoutUrl}}" role="menuitem">${Logout}</a></li>
+          </ul>
+        </li>
+        <li ng-if="showXSAvatar" class="visible-xs-block" role="presentation"><a role="menuitem" ng-href="?id=user_profile&sys_id={{::user.sys_id}}" ng-click="collapse()">
+          <span class="navbar-avatar"><sn-avatar class="avatar-small-medium" primary="avatarProfile" /></span>{{::user.name}}</a>
+        </li>
+        <li ng-if="::!(isViewNative || isViewNativeTablet)" class="visible-xs-block" role="presentation"><a role="menuitem" ng-href="{{::portal.logoutUrl}}" ng-click="collapse()">${Logout}</a></li>
+      </ul>
+    </div>
+  </nav>
+</div> -->]]></template>
+    </sp_header_footer>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</application>
+        <file_path/>
+        <instance_id>752e73ba103110107f440c7703d59ce7</instance_id>
+        <instance_name>labinstance001</instance_name>
+        <name>sp_header_footer_280a5636814e90107f447877e3db40eb</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_header_footer"&gt;&lt;sp_header_footer action="INSERT_OR_UPDATE"&gt;&lt;category&gt;standard&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function ($rootScope, $scope, snRecordWatcher, spUtil, $location, $uibModal, cabrillo, $timeout, $window) {
+
+	$scope.collapse = function() {
+		$rootScope.$emit('sp-navbar-collapse');
+	}
+
+	$scope.avatarProfile = {
+		userID: $scope.user.sys_id,
+		name: $scope.user.name,
+		initials: $window.NOW.user_initials
+	};
+
+	if ($window.NOW.user_avatar) {
+		$scope.avatarProfile.userImage = $window.NOW.user_avatar;
+	}
+
+	if (cabrillo.isNative()) {
+		if ($window.innerWidth &lt; 767) {
+			$scope.isViewNative = true;
+		} else {
+			$scope.isViewNativeTablet = true;
+		}
+	}
+
+
+	$scope.openPopUp = function() {
+		var url = "$chat_support.do?queueID=" + $scope.data.connect_support_queue_id;
+		var popup = window.open (url, "popup", "width=900, height=600");
+	};
+
+	$scope.openLogin = function () {
+		$scope.modalInstance = $uibModal.open({
+			templateUrl: 'modalLogin',
+			scope: $scope
+		});
+	};
+
+	var xsScreenSize = isXSScreenSize();
+	$scope.showXSAvatar = isXSScreenSize();
+	$scope.showAvatar = !isXSScreenSize();
+
+	$scope.isAgentChatConfigured = g_has_agent_chat_config;
+
+	angular.element($window).on('resize', function () {
+		if(xsScreenSize !== isXSScreenSize() &amp;&amp; (!$scope.showXSAvatar || !$scope.showAvatar)){
+			$scope.showXSAvatar = true;
+			$scope.showAvatar = true;
+		}
+	});
+
+
+	function isXSScreenSize() {
+		return $window.matchMedia('(max-width: 767px)').matches;
+	}
+
+	$rootScope.$on('sp.avatar_changed', function(evt, obj) {
+		$scope.userID = "";
+		$scope.newAvatarId = obj.newAvatarId;
+		$timeout(function(){
+			$scope.userID = $scope.user.sys_id;
+			$("#profile-dropdown .sub-avatar").css("background-image", 'url("' + $scope.newAvatarId + '.iix?t=small")');
+		});
+	});
+
+	$scope.isHomepage = function() {
+		if (!$scope.page.id)
+			return true;
+
+		if ($scope.page.id == $scope.portal.homepage_dv)
+			return true;
+
+		return false;
+	};
+}
+		]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;header{&amp;#13;
+  display: none;&amp;#13;
+}&amp;#13;
+.navbar {&amp;#13;
+  transition: 250ms opacity ease-in-out;&amp;#13;
+  -webkit-transition: 250ms opacity ease-in-out;&amp;#13;
+  border: 0;&amp;#13;
+  border-bottom: 4px solid $sp-navbar-divider-color;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.navbar-fade {&amp;#13;
+  opacity: 0.4;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.navbar-inverse .navbar-toggle {&amp;#13;
+  border-color: rgba(255, 255, 255, 0.25);&amp;#13;
+}&amp;#13;
+&amp;#13;
+header[role="banner"],&amp;#13;
+.nav &amp;gt; li &amp;gt; a {&amp;#13;
+  max-height: 60px;&amp;#13;
+}&amp;#13;
+&amp;#13;
+@media screen and (max-width: 768px){&amp;#13;
+  .nav &amp;gt; li &amp;gt; a {&amp;#13;
+    padding-right: 0.5rem;&amp;#13;
+    padding-left: 0.5rem;&amp;#13;
+  }&amp;#13;
+}&amp;#13;
+&amp;#13;
+.navbar-brand {&amp;#13;
+  max-height: 60px;&amp;#13;
+  padding: 0;&amp;#13;
+  padding-bottom: 0.5rem;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.navbar-brand img, .navbar-brand span {&amp;#13;
+  margin-left: $sp-logo-margin-x;&amp;#13;
+  margin-right: $sp-logo-margin-x;&amp;#13;
+  margin-top: $sp-logo-margin-y;&amp;#13;
+  margin-bottom: $sp-logo-margin-y;&amp;#13;
+  display: block;&amp;#13;
+  max-height: $sp-logo-max-height;&amp;#13;
+  max-width: $sp-logo-max-width;&amp;#13;
+  position: relative;&amp;#13;
+  top: 50%;&amp;#13;
+  -webkit-transform: translateY(-50%);&amp;#13;
+  -ms-transform: translateY(-50%);&amp;#13;
+  transform: translateY(-50%);&amp;#13;
+}&amp;#13;
+.breadcrumb-container {&amp;#13;
+  background-color: $panel-bg;&amp;#13;
+}&amp;#13;
+&amp;#13;
+/* for mobile app */&amp;#13;
+.navbar-inverse.is-native {&amp;#13;
+  background-color: #405060;&amp;#13;
+}&amp;#13;
+&amp;#13;
+nav {&amp;#13;
+  margin-bottom: 0px;&amp;#13;
+  border-radius: 0px;&amp;#13;
+&amp;#13;
+ .toggle-dropdown {&amp;#13;
+    height: 60px;&amp;#13;
+  }&amp;#13;
+&amp;#13;
+}&amp;#13;
+&amp;#13;
+.navbar-right {&amp;#13;
+  padding-right: 0px;&amp;#13;
+  padding-left: 7px;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.navbar-nav {&amp;#13;
+margin: 0px;&amp;#13;
+}&amp;#13;
+&amp;#13;
+// PRB711244: Dropdown menu is scrollable when too many items&amp;#13;
+.scrollable-dropdown {&amp;#13;
+  max-height: 80vh;&amp;#13;
+  overflow: auto;&amp;#13;
+  height: auto;&amp;#13;
+}&amp;#13;
+&amp;#13;
+.is-native {&amp;#13;
+ .scrollable-dropdown {&amp;#13;
+  max-height: 100vh;&amp;#13;
+  overflow: scroll;&amp;#13;
+  height: auto;&amp;#13;
+	}&amp;#13;
+}&amp;#13;
+&amp;#13;
+&amp;#13;
+/* PRB923910: Fix for Service Portal - Header Poorly Aligned in Safari */&amp;#13;
+@media screen and (min-width: 768px) {&amp;#13;
+  .navbar-right {&amp;#13;
+    display: flex !important;&amp;#13;
+  }&amp;#13;
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id/&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function(scope, element) {
+	$(document).keyup(function(event) {
+		if (event.which == 9 || event.which == 37 || event.which == 39) { //tab key handler + arrow keys
+			if ($(event.target).parents(".dropdown-menu").length == 0) { //if we are NOT inside a dropdown...
+				//close the dropdowns
+				$(".dropdown").removeClass("open");
+				$("[data-toggle='dropdown']").attr("aria-expanded", "false");
+			}
+		}
+	});
+
+	$(element).on('click.nav','.navbar-collapse.in',function(e) {
+		var target = $(e.target);
+		if (target.is('a')) {
+			if (target.hasClass('sp-menu-has-items'))
+				return; // menu item has a submenu, so just toggle it
+
+			// collapse mobile nav if clicked an anchor
+			$(this).removeClass('in').addClass('collapse');
+			return;
+		}
+
+		if (target.parent().hasClass("toggle-dropdown")) {
+			// collapse mobile nav if parent has toggle-dropdown class
+			$(this).removeClass('in').addClass('collapse');
+			return;
+		}
+
+		// if neither target nor parent is an anchor, do nothing
+		if (!target.parent().is('a'))
+			return;
+
+		// collapse mobile nav if target is part of a submenu
+		if (target.parents("ul.dropdown-menu").length &gt; 0)
+			$(this).removeClass('in').addClass('collapse');
+	});
+}]]&gt;&lt;/link&gt;&lt;name&gt;Lab Management Header&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;true&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[// Defines the support queue ID that will be linked to by the Live Chat link in header
+data.connect_support_queue_id = $sp.getValue('sp_chat_queue');
+data.login_page = $sp.getValue('login_page');
+data.profileBtnMsg = gs.getMessage("User options");
+var menu = $sp.getValue("sp_rectangle_menu");
+data.menu = $sp.getWidgetFromInstance(menu);
+if (data.menu &amp;&amp; data.menu.data) {
+	data.menu.data.replace = true;
+	// Hide login if menu already has link to login
+	data.hasLogin = false;
+	if (data.menu.data.menu.items) {
+		for(var i in data.menu.data.menu.items) {
+			var item = data.menu.data.menu.items[i];
+			if (item.type == 'page' &amp;&amp; item.sp_page == data.login_page)
+				data.hasLogin = true;
+		}
+	}
+}
+
+data.loginWidget = $sp.getWidgetFromInstance('login-modal');]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_header_footer&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-07-20 17:31:21&lt;/sys_created_on&gt;&lt;sys_id&gt;280a5636814e90107f447877e3db40eb&lt;/sys_id&gt;&lt;sys_mod_count&gt;9&lt;/sys_mod_count&gt;&lt;sys_name&gt;Lab Management Header&lt;/sys_name&gt;&lt;sys_package display_value="Lab Management" source="x_snc_lab_man"&gt;f24888cc5cf400107f442a8e9a094ba4&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Lab Management"&gt;f24888cc5cf400107f442a8e9a094ba4&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_header_footer_280a5636814e90107f447877e3db40eb&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-07-20 17:39:39&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div&gt;
+  &lt;nav class="navbar-inverse" ng-class="::{'navbar':!isViewNative, 'is-native': isViewNative}"
+       role="navigation"&gt;
+    &lt;div ng-show="::!isViewNative" class="navbar-header"&gt;
+&lt;a class="navbar-brand" ng-if="::!portal.logo" href="?id={{::portal.homepage_dv}}"&gt;&lt;span ng-bind="portal.title"&gt;&lt;/span&gt;&lt;/a&gt;
+      &lt;a class="navbar-brand navbar-brand-logo" ng-if="::portal.logo" ng-href="?id={{::portal.homepage_dv}}" ng-click="collapse()" aria-label="${Go to homepage}"&gt;
+        &lt;img ng-src="{{::portal.logo}}" title="ServiceNow" role="presentation" alt="${Portal Logo}" /&gt;
+      &lt;/a&gt;
+
+      &lt;button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sp-nav-bar"&gt;
+        &lt;span class="sr-only"&gt;${Toggle navigation}&lt;/span&gt;
+        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+        &lt;span class="icon-bar"&gt;&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div sp-navbar-toggle="" class="collapse navbar-right" id="sp-nav-bar"&gt;
+      &lt;!-- Include The Menu --&gt;
+      &lt;sp-widget widget="::data.menu"&gt;&lt;/sp-widget&gt;
+      &lt;ul ng-if="(!user.logged_in &amp;&amp; page.id != portal.login_page_dv &amp;&amp; !data.hasLogin)" class="nav navbar-nav" role="presentation"&gt;
+        &lt;li role="presentation"&gt;&lt;a href ng-click="::openLogin()"&gt;${Login}&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;ul ng-if="user.logged_in" class="nav navbar-nav" role="menubar"&gt;
+        &lt;!-- chat, avatar, and logout --&gt;
+        &lt;li ng-if="::(data.connect_support_queue_id &amp;&amp; !isAgentChatConfigured)" role="presentation"&gt;&lt;a href ng-click="openPopUp()" role="menuitem"&gt;${Live Chat}&lt;/a&gt;&lt;/li&gt;
+        &lt;li ng-if="showAvatar" class="hidden-xs dropdown" role="presentation"&gt;
+          &lt;a href class="toggle-dropdown" data-toggle="dropdown" aria-expanded="false" title="{{::data.profileBtnMsg}}" aria-label="{{::data.profileBtnMsg}}: {{::user.name}}" id="profile-dropdown"  role="menuitem" aria-haspopup="true"&gt;
+            &lt;span class="navbar-avatar" aria-hidden="true"&gt;&lt;sn-avatar class="avatar-small-medium" primary="avatarProfile" /&gt;&lt;/span&gt;
+            &lt;span class="visible-lg-inline"&gt;{{::user.name}}&lt;/span&gt;
+          &lt;/a&gt;
+          &lt;ul class="dropdown-menu" role="menu" aria-label="{{::data.profileBtnMsg}}"&gt;
+            &lt;li role="presentation"&gt;&lt;a tabindex="-1" ng-href="?id=user_profile&amp;sys_id={{::user.sys_id}}" role="menuitem"&gt;${Profile}&lt;/a&gt;&lt;/li&gt;
+            &lt;li ng-if="::!(isViewNative || isViewNativeTablet)" role="presentation"&gt;&lt;a tabindex="-1" href="{{::portal.logoutUrl}}" role="menuitem"&gt;${Logout}&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li ng-if="showXSAvatar" class="visible-xs-block" role="presentation"&gt;&lt;a role="menuitem" ng-href="?id=user_profile&amp;sys_id={{::user.sys_id}}" ng-click="collapse()"&gt;
+          &lt;span class="navbar-avatar"&gt;&lt;sn-avatar class="avatar-small-medium" primary="avatarProfile" /&gt;&lt;/span&gt;{{::user.name}}&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li ng-if="::!(isViewNative || isViewNativeTablet)" class="visible-xs-block" role="presentation"&gt;&lt;a role="menuitem" ng-href="{{::portal.logoutUrl}}" ng-click="collapse()"&gt;${Logout}&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+&lt;/div&gt; --&gt;]]&gt;&lt;/template&gt;&lt;/sp_header_footer&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-747928382</payload_hash>
+        <record_name>Lab Management Header</record_name>
+        <reverted_from/>
+        <source>433d6415810210107f447877e3db402a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-20 17:39:39</sys_created_on>
+        <sys_id>d6ebd676814e90107f447877e3db40cd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1736d4f4a7e0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-20 17:39:39</sys_updated_on>
+        <type>Header | Footer</type>
+        <update_guid>12ebd676a54e9010f7e59feeff3e30cd</update_guid>
+        <update_guid_history>12ebd676a54e9010f7e59feeff3e30cd:-747928382,1adb9676ca4e90103b83796621bd0002:2129717320,d0ab56765b4e901067bcf4fb5602e874:289240115,9c7bd2767b4e9010c81ca5c654c6dfbc:1223458816,0b0bde36014e90102fc720f6de5af771:-1682033182,990b9e36bb4e9010a8e43e139d678fca:-987681769,90ca9a36874e9010d5468884c946663a:-1682033182,fd5a9636034e9010f2116dfed7dcf4d1:1164123860,e20a96363c4e9010dcf23fe989b3bca9:547089320,200a5636d14e90108874ba382308f8ee:462544874</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">d4ec52b6814e90107f447877e3db4039</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-20 17:43:53</sys_created_on>
+        <sys_db_object display_value="" name="sp_header_footer">sp_header_footer</sys_db_object>
+        <sys_id>9189956e16be49bb92e60d4710efe641</sys_id>
+        <sys_metadata>280a5636814e90107f447877e3db40eb</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Lab Management Header</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_scope_delete display_value="">0883ea1cf04d4920a8c962da30e69564</sys_scope_delete>
+        <sys_update_name>sp_header_footer_280a5636814e90107f447877e3db40eb</sys_update_name>
+        <sys_update_version display_value="sp_header_footer_280a5636814e90107f447877e3db40eb">d6ebd676814e90107f447877e3db40cd</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-20 17:43:53</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

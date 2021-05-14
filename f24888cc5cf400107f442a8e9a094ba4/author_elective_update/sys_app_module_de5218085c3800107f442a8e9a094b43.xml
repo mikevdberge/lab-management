@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="DELETE">
+        <active>true</active>
+        <application display_value="Lab Management">88cd8c045c3800107f442a8e9a094b9d</application>
+        <assessment/>
+        <device_type/>
+        <filter/>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>DIRECT</link_type>
+        <map_page/>
+        <mobile_title>Lab Management Settings</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name/>
+        <order>300</order>
+        <override_menu_roles>false</override_menu_roles>
+        <query>system_properties_ui.do?sysparm_title=Lab%20Management&amp;sysparm_category=Lab Management Settings</query>
+        <report/>
+        <roles/>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-10-24 19:06:44</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>de5218085c3800107f442a8e9a094b43</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Settings</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_update_name>sys_app_module_de5218085c3800107f442a8e9a094b43</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-23 19:49:22</sys_updated_on>
+        <timeline_page/>
+        <title>Settings</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</application>
+        <file_path/>
+        <instance_id>752e73ba103110107f440c7703d59ce7</instance_id>
+        <instance_name>labinstance001</instance_name>
+        <name>sys_app_module_de5218085c3800107f442a8e9a094b43</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module"><sys_app_module action="INSERT_OR_UPDATE"><active>true</active><application display_value="Lab Management">88cd8c045c3800107f442a8e9a094b9d</application><assessment/><device_type/><filter/><hint/><homepage/><image/><link_type>DIRECT</link_type><map_page/><mobile_title>Lab Management Settings</mobile_title><mobile_view_name>Mobile</mobile_view_name><name/><order>300</order><override_menu_roles>false</override_menu_roles><query>system_properties_ui.do?sysparm_title=Lab%20Management&amp;sysparm_category=Lab Management Settings</query><report/><roles/><sys_class_name>sys_app_module</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2019-10-24 19:06:44</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>de5218085c3800107f442a8e9a094b43</sys_id><sys_mod_count>6</sys_mod_count><sys_name>Settings</sys_name><sys_overrides/><sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package><sys_policy/><sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope><sys_update_name>sys_app_module_de5218085c3800107f442a8e9a094b43</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-07-23 19:49:22</sys_updated_on><timeline_page/><title>Settings</title><uncancelable>false</uncancelable><view_name/><window_name/></sys_app_module></record_update>]]></payload>
+        <payload_hash>-829331517</payload_hash>
+        <record_name>Settings</record_name>
+        <reverted_from/>
+        <source>50e77e438146d0107f447877e3db40f6</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-23 19:49:22</sys_created_on>
+        <sys_id>b7565237814a14107f447877e3db40a3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1737d3921630000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-23 19:49:22</sys_updated_on>
+        <type>Module</type>
+        <update_guid>33565237894a1410d39f9c2a0e3726a3</update_guid>
+        <update_guid_history>33565237894a1410d39f9c2a0e3726a3:-829331517,70a45ab3994a14105c003e11eea848d4:420877154,ece7b6831146d010bdbbf109f394b932:0,cbd7f2833146d0108681d1c5a40a78c4:-1027266365,92d7f283f546d0106aafe7786f1aab3d:0,6df8e0d14b0210107689cee753c43b66:952127011</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">3dfa5f1e81de18107f447877e3db40ce</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-31 19:13:53</sys_created_on>
+        <sys_db_object display_value="" name="sys_app_module">sys_app_module</sys_db_object>
+        <sys_id>7cb36cb49e5c4bc49299a8a289542684</sys_id>
+        <sys_metadata>de5218085c3800107f442a8e9a094b43</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Settings</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_scope_delete display_value="">0883ea1cf04d4920a8c962da30e69564</sys_scope_delete>
+        <sys_update_name>sys_app_module_de5218085c3800107f442a8e9a094b43</sys_update_name>
+        <sys_update_version display_value="sys_app_module_de5218085c3800107f442a8e9a094b43">b7565237814a14107f447877e3db40a3</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-31 19:13:53</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

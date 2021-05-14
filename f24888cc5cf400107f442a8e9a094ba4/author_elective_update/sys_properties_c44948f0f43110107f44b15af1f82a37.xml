@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="DELETE">
+        <choices/>
+        <description/>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_snc_lab_man.cl.management.host</name>
+        <read_roles/>
+        <suffix>cl.management.host</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-01 15:36:39</sys_created_on>
+        <sys_id>c44948f0f43110107f44b15af1f82a37</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_lab_man.cl.management.host</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_update_name>sys_properties_c44948f0f43110107f44b15af1f82a37</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-01 15:36:39</sys_updated_on>
+        <type>string</type>
+        <value>cloudlabs</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="DELETE" query="documentkey=c44948f0f43110107f44b15af1f82a37"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</application>
+        <file_path/>
+        <instance_id>6a2e52b8842110107f446d397094657b</instance_id>
+        <instance_name>labinstance001</instance_name>
+        <name>sys_properties_c44948f0f43110107f44b15af1f82a37</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties"><sys_properties action="INSERT_OR_UPDATE"><choices/><description/><ignore_cache>false</ignore_cache><is_private>false</is_private><name>x_snc_lab_man.cl.management.host</name><read_roles/><suffix>cl.management.host</suffix><sys_class_name>sys_properties</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-07-01 15:36:39</sys_created_on><sys_id>c44948f0f43110107f44b15af1f82a37</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_snc_lab_man.cl.management.host</sys_name><sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package><sys_policy/><sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope><sys_update_name>sys_properties_c44948f0f43110107f44b15af1f82a37</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-07-01 15:36:39</sys_updated_on><type>string</type><value>cloudlabs</value><write_roles/></sys_properties><sys_translated_text action="delete_multiple" query="documentkey=c44948f0f43110107f44b15af1f82a37"/></record_update>]]></payload>
+        <payload_hash>113812292</payload_hash>
+        <record_name>x_snc_lab_man.cl.management.host</record_name>
+        <reverted_from/>
+        <source>aee80c30f43110107f44b15af1f82aad</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-01 15:36:40</sys_created_on>
+        <sys_id>ef8948f0f43110107f44b15af1f82a67</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1730b05ddd90000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-01 15:36:40</sys_updated_on>
+        <type>System Property</type>
+        <update_guid>678948f0bb3110104721c10611d90b67</update_guid>
+        <update_guid_history>678948f0bb3110104721c10611d90b67:113812292</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-07-01 15:41:55</sys_created_on>
+        <sys_db_object display_value="" name="sys_properties">sys_properties</sys_db_object>
+        <sys_id>8607358daff948c89a46c24ba4337810</sys_id>
+        <sys_metadata>c44948f0f43110107f44b15af1f82a37</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_lab_man.cl.management.host</sys_name>
+        <sys_package display_value="Lab Management" source="x_snc_lab_man">f24888cc5cf400107f442a8e9a094ba4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Lab Management">f24888cc5cf400107f442a8e9a094ba4</sys_scope>
+        <sys_scope_delete display_value="">0883ea1cf04d4920a8c962da30e69564</sys_scope_delete>
+        <sys_update_name>sys_properties_c44948f0f43110107f44b15af1f82a37</sys_update_name>
+        <sys_update_version display_value="sys_properties_c44948f0f43110107f44b15af1f82a37">ef8948f0f43110107f44b15af1f82a67</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-07-01 15:41:55</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
