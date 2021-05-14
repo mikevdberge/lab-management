@@ -3,7 +3,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>instance_name</element>
-            <list_id display_value="x_snc_lab_man_student_instances" element="NULL" name="x_snc_lab_man_student_instances" parent="NULL" relationship="NULL" sys_domain="global" view="86c34242f43220107f4446973d0adbd0">c5fec8445c3800107f442a8e9a094bd9</list_id>
+            <list_id display_value="x_snc_lab_man_student_instances" element="NULL" name="x_snc_lab_man_student_instances" parent="NULL" relationship="NULL" sys_domain="global" view="90991353d83210100c1d056eb83723a3">c5fec8445c3800107f442a8e9a094bd9</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -40,7 +40,7 @@
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2019-10-24 18:50:53</sys_updated_on>
             <sys_user/>
-            <view display_value="Reference List" name="sys_ref_list">86c34242f43220107f4446973d0adbd0</view>
+            <view display_value="Reference List" name="sys_ref_list">90991353d83210100c1d056eb83723a3</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>

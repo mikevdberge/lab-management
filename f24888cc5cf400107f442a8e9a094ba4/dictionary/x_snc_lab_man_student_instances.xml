@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element label="Student Instances" max_length="40" name="x_snc_lab_man_student_instances" sizeclass="0" type="collection">
+    <element label="Student Instances" max_length="40" name="x_snc_lab_man_student_instances" type="collection">
         <element attributes="edge_encryption_enabled=true" label="Email Address" max_length="100" name="email_address" type="string"/>
         <element attributes="edge_encryption_enabled=true" label="First Name" max_length="50" name="first_name" type="string"/>
         <element attributes="edge_encryption_enabled=true" display="true" label="Instance Name" max_length="100" name="instance_name" type="string"/>
